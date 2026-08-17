@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Categories on Saraff Global</title>
+		<link>https://www.saraffglobalhugo.saraffglobal.com/categories/</link>
+		<description>Recent content in Categories on Saraff Global</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Mon, 06 Jul 2026 16:46:51 +0000</lastBuildDate>
+		
+			<atom:link href="https://www.saraffglobalhugo.saraffglobal.com/categories/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>News</title>
+				<link>https://www.saraffglobalhugo.saraffglobal.com/categories/news/</link>
+				<pubDate>Mon, 03 Jul 2017 16:11:14 +0000</pubDate>
+				<guid>https://www.saraffglobalhugo.saraffglobal.com/categories/news/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Philanthropy</title>
+				<link>https://www.saraffglobalhugo.saraffglobal.com/categories/philanthropy/</link>
+				<pubDate>Fri, 10 Jul 2015 04:35:53 +0000</pubDate>
+				<guid>https://www.saraffglobalhugo.saraffglobal.com/categories/philanthropy/</guid>
+				<description></description>
+			</item>
+	</channel>
+</rss>

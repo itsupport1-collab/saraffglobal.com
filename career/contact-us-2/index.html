@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Us · Saraff Global</title>
+  <meta name="description" content="Striving Towards Excellence">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: #122238;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    body {
+        padding-top: 105px;
+    }
+    .site-header .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1350px;
+        margin: 0 auto;
+        padding: 35px 45px;
+    }
+    .site-header nav ul {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 15px;
+        align-items: center;
+    }
+    .site-header nav a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+    .site-header nav a:hover {
+        color: #ddd;
+    }
+    .search-icon-btn {
+        color: #333333;
+        font-size: 1.1rem;
+        text-decoration: none;
+        padding: 5px 10px;
+        transition: color 0.2s;
+    }
+    .page-hero {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .menu-toggle-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    @media (max-width: 992px) {
+        body {
+            padding-top: 80px;
+        }
+        .site-header .wrap {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            padding: 15px 20px;
+        }
+        .site-header nav ul {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #122238;
+            padding: 20px 0;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+            text-align: center;
+            gap: 20px;
+        }
+        .site-header nav ul.active {
+            display: flex;
+        }
+        .menu-toggle-btn {
+            display: block;
+            order: 2;
+        }
+        .brand {
+            order: 1;
+        }
+        .content-body {
+            flex-direction: column;
+            gap: 20px !important;
+        }
+        .site-footer iframe {
+            width: 100% !important;
+            height: 300px !important;
+        }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" style="display: flex; align-items: center; gap: 20px; text-decoration: none;">
+        <img loading="lazy" src="/images/uploads/2015/10/saraffglobal 1300.png" alt="Saraff Global logo" style="width: 150px; height: auto;">
+        <span class="brand-name" style="color: #333; font-size: 2rem; font-weight: bold;"></span>
+      </a>
+
+      <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="Toggle Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav aria-label="Main">
+      <ul id="navMenu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about-us/about-us-2/">About Us</a></li>
+        <li><a href="/our-business-leaders/">Our Business Leaders</a></li>
+        <li><a href="/the-saraff-global-group-of-companies/">The Group</a></li>
+        <li><a href="/careers/">Careers</a></li>
+        <li><a href="/philanthropy2/">Philanthropy</a></li>
+        <li><a href="/categories/news/">News</a></li>
+        <li><a href="/contact-us-2/">Contact Us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" style="padding: 40px 20px;">
+    <article>
+      <div class="page-hero">
+        <h1>Contact Us</h1>
+      </div>
+      
+      <div class="content-body" style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; max-width: 1200px; margin: 0 auto;">
+        
+        <div style="flex: 1; min-width: 300px;">
+          <h2>Saraff Global</h2>
+          <p style="font-family: Century Gothic; line-height: 1.6; margin-bottom: 20px;">
+            77/32 Sinn Sathorn Tower 11th Floor,<br>
+            Krungthonburi Road, Klongtonsai,<br>
+            Klongsarn, Bangkok,<br>
+            Thailand 10600<br>
+            Call Us: +66 2862-2061
+          </p>
+          
+          <div style="display: flex; gap: 15px; align-items: center;">
+            <a href="https://www.facebook.com/saraffglobal" style="color: #122238; display: flex; align-items: center; gap: 5px; text-decoration: none;">
+              <i class="fa-brands fa-facebook" style="font-size: 1.2rem; color: #1877F2;"></i> Facebook
+            </a>
+            <a href="https://www.instagram.com/saraffdiamondjewelry/" style="color: #122238; display: flex; align-items: center; gap: 5px; text-decoration: none;">
+              <i class="fa-brands fa-instagram" style="font-size: 1.2rem; color: #E4405F;"></i> Instagram
+            </a>
+          </div>
+        </div>
+
+        <div style="flex: 1.2; min-width: 300px;">
+          <iframe height="350" src="https://www.google.com/maps/d/embed?mid=1DifMvTGUxEgRck4yv9j6Ana-p4Q" width="100%" style="border:0; border-radius: 6px;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; align-items: flex-start;">
+      <div style="flex: 1; min-width: 200px;">
+        <h4>Saraff Global</h4>
+        <p>Striving Towards Excellence</p>
+        <p style="margin-top: 15px; display: flex; gap: 15px; align-items: center;">
+          <a href="https://www.facebook.com/saraffglobal" style="color: #fff; display: flex; align-items: center; gap: 5px; text-decoration: none;">
+            <i class="fa-brands fa-facebook" style="font-size: 1.2rem; color: #1877F2;"></i> Facebook
+          </a>
+          <a href="https://www.instagram.com/saraffdiamondjewelry/" style="color: #fff; display: flex; align-items: center; gap: 5px; text-decoration: none;">
+            <i class="fa-brands fa-instagram" style="font-size: 1.2rem; color: #E4405F;"></i> Instagram
+          </a>
+        </p>
+      </div>
+
+      <div style="flex: 1; min-width: 200px;">
+        <h4>Navigate</h4>
+        <p>
+          <a href="/">Home</a><br>
+          <a href="/about-us/about-us-2/">About Us</a><br>
+          <a href="/our-business-leaders/">Our Business Leaders</a><br>
+          <a href="/the-saraff-global-group-of-companies/">The Group</a><br>
+          <a href="/careers/">Careers</a><br>
+          <a href="/philanthropy2/">Philanthropy</a><br>
+          <a href="/categories/news/">News</a><br>
+          <a href="/contact-us-2/">Contact Us</a><br>
+        </p>
+      </div>
+
+      <div style="flex: 1; min-width: 250px;">
+        <h4>Contact</h4>
+        <p>77/32 Sinn Sathorn Tower 11th Floor, Krungthonburi Road, Klongtonsai, Klongsarn, Bangkok, Thailand 10600<br>&#43;66 2862-2061</p>
+      </div>
+    </div>
+    
+    <div class="copyright" style="text-align: center; margin-top: 30px;">Copyright © 2026 Saraff Global. All rights reserved.</div>
+  </footer>
+
+  <script>
+    const menuToggleBtn = document.getElementById('menuToggleBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    if(menuToggleBtn) {
+        menuToggleBtn.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+    }
+  </script>
+</body>
+</html>
+
+```

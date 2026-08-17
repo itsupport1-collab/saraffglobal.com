@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>News · Saraff Global</title>
+  <meta name="description" content="Striving Towards Excellence">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="alternate" type="application/rss+xml" href="https://wwwsaraffglobal.com/categories/news/index.xml">
+  <style>
+    .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: #122238;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    body {
+        padding-top: 110px;
+    }
+    .site-header .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1350px;
+        margin: 0 auto;
+        padding: 35px 45px;
+    }
+    .site-header nav ul {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 15px;
+        align-items: center;
+    }
+    .site-header nav a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+    .site-header nav a:hover {
+        color: #ddd;
+    }
+    .page-hero {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 20px;
+    }
+    .card {
+        background: #fff;
+        border: 1px solid #eaeaea;
+        border-radius: 8px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.2s;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: contain;
+        background-color: #f9f9f9;
+    }
+    .card-body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+    }
+    .card-body h3 {
+        font-size: 1.1rem;
+        line-height: 1.5;
+        margin-bottom: 15px;
+    }
+    .card-body h3 a {
+        color: #333;
+        text-decoration: none;
+    }
+    .card-body h3 a:hover {
+        color: #0056b3;
+    }
+    .read-more-btn {
+        display: inline-block;
+        margin-top: auto;
+        padding: 8px 16px;
+        background-color: #f5f5f5;
+        color: #333;
+        text-decoration: none;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        align-self: flex-start;
+        border: 1px solid #ddd;
+        transition: background-color 0.2s, color 0.2s;
+    }
+    .read-more-btn:hover {
+        background-color: #333;
+        color: #fff;
+        border-color: #333;
+    }
+    .card .meta {
+        font-size: 0.85rem;
+        color: #777;
+        margin-top: 15px;
+    }
+
+    /* ========================================================== */
+    /* [REMARK - MOBILE RESPONSIVE]: เพิ่มเติม CSS สำหรับมือถือ    */
+    /* ========================================================== */
+    .menu-toggle-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    @media (max-width: 992px) {
+        body {
+            padding-top: 80px;
+        }
+        .site-header .wrap {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            padding: 15px 20px;
+        }
+        .site-header nav ul {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #122238;
+            padding: 20px 0;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+            text-align: center;
+            gap: 20px;
+        }
+        .site-header nav ul.active {
+            display: flex;
+        }
+        .menu-toggle-btn {
+            display: block;
+            order: 2;
+        }
+        .brand {
+            order: 1;
+        }
+        .card-grid {
+            grid-template-columns: 1fr;
+        }
+        .site-footer iframe {
+            width: 100% !important;
+            height: 300px !important;
+        }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" style="display: flex; align-items: center; gap: 20px; text-decoration: none;">
+        <!-- ปรับขนาดความสูงของโลโก้ให้ใหญ่ขึ้น -->
+        <img loading="lazy" src="/images/uploads/2015/10/saraffglobal 1300.png" alt="Saraff Global logo" style="width: 150px; height: auto;">
+        <span class="brand-name" style="color: #333; font-size: 2rem; font-weight: bold;"></span>
+      </a>
+
+      <!-- [REMARK - MOBILE RESPONSIVE]: ปุ่มแฮมเบอร์เกอร์สำหรับเปิด-ปิดเมนูด้านบนบนมือถือ -->
+      <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="Toggle Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav aria-label="Main">
+        <ul id="navMenu">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about-us/about-us-2/">About Us</a></li>
+          <li><a href="/our-business-leaders/">Our Business Leaders</a></li>
+          <li><a href="/the-saraff-global-group-of-companies/">The Group</a></li>
+          <li><a href="/careers/">Careers</a></li>
+          <li><a href="/philanthropy2/">Philanthropy</a></li>
+          <li><a href="/categories/news/">News</a></li>
+          <li><a href="/contact-us-2/">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+<main class="wrap" style="padding: 40px 20px;">
+<article>
+  <div class="page-hero">
+    <h1>News</h1>
+  </div>
+
+<div class="card-grid">
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/07/Pravasi-Bharatiya-Samman-2017_Susheel-Kumar-Saraff-1-1.jpg" alt="Pravasi Bharatiya Samman">
+    <div class="card-body">
+      <h3><a href="/posts/sharing-the-news-story-published-in-the-prestigious-bilingual-newsletter-india-calling-volume-viii-1-april-2017-published-by-centre-for-bharat-studies/">Sharing the news story published in the prestigious bilingual newsletter, "India Calling" Volume VIII...</a></h3>
+      <a href="/posts/sharing-the-news-story-published-in-the-prestigious-bilingual-newsletter-india-calling-volume-viii-1-april-2017-published-by-centre-for-bharat-studies/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">3 Jul 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/06/1s.jpg" alt="YogaDay Celebration">
+    <div class="card-body">
+      <h3><a href="/posts/18-june-2017-here-are-some-moments-of-yogaday-celebration-at-chulalongkorn-university-in-bangkok/">(18 June 2017) - Here are some moments of #YogaDay Celebration at Chulalongkorn University in #Bangkok.</a></h3>
+      <a href="/posts/18-june-2017-here-are-some-moments-of-yogaday-celebration-at-chulalongkorn-university-in-bangkok/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">19 Jun 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/06/DSC_0280.jpg" alt="US Trade Show">
+    <div class="card-body">
+      <h3><a href="/posts/us-trade-show-2017/">US. Trade show 2017</a></h3>
+      <a href="/posts/us-trade-show-2017/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">8 Jun 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/06/18920891_1353377408102618_8350026714602801005_o.jpg" alt="Royal Ceremony">
+    <div class="card-body">
+      <h3><a href="/posts/8-june-2017-saraff-global-team-in-bangkok-joined-the-royal-ceremony-and-paid-respect-to-the-beloved-late-h-m-the-king-bhumibol-adulyadej-hm-the-late-king-rama-ix/">(8 June 2017) - Saraff Global Team in Bangkok joined the royal ceremony and paid respect...</a></h3>
+      <a href="/posts/8-june-2017-saraff-global-team-in-bangkok-joined-the-royal-ceremony-and-paid-respect-to-the-beloved-late-h-m-the-king-bhumibol-adulyadej-hm-the-late-king-rama-ix/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">8 Jun 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/05/17039250_1332842583489434_2657634784499713379_o.jpg" alt="The Big Chilli Magazine">
+    <div class="card-body">
+      <h3><a href="/posts/have-a-look-to-the-may-2017-issue-of-the-big-chilli-magazine/">Have a look to the May 2017 issue of The Big Chilli Magazine</a></h3>
+      <a href="/posts/have-a-look-to-the-may-2017-issue-of-the-big-chilli-magazine/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">22 May 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/03/17434937_2251077648450641_5229462425172792063_o.jpg" alt="Event Cancelled">
+    <div class="card-body">
+      <h3><a href="/posts/event-cancelled/">EVENT CANCELLED</a></h3>
+      <a href="/posts/event-cancelled/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">24 Mar 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/03/17424788_1271045043002522_3280365755928437404_n-1.jpg" alt="Educational Scholarships">
+    <div class="card-body">
+      <h3><a href="/posts/19-march-2017-awarded-educational-scholarships-to-8-special-privileged-thai-students-at-a-charity-fund-raising-event-organized-by-the-united-service-alliance-thailand/">19 March 2017: Awarded Educational Scholarships to 8 Special Privileged Thai Students...</a></h3>
+      <a href="/posts/19-march-2017-awarded-educational-scholarships-to-8-special-privileged-thai-students-at-a-charity-fund-raising-event-organized-by-the-united-service-alliance-thailand/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">24 Mar 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/03/17353252_1271041283002898_4916897220325891239_n.jpg" alt="Award Felicitations">
+    <div class="card-body">
+      <h3><a href="/posts/19-march-2017-thank-you-all-the-executive-committee-members-of-the-united-service-alliance-thailand/">19 March 2017: Thank You All the Executive Committee Members of the United Service Alliance...</a></h3>
+      <a href="/posts/19-march-2017-thank-you-all-the-executive-committee-members-of-the-united-service-alliance-thailand/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">24 Mar 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/03/17361702_1270889606351399_3987647507154128759_n.jpg" alt="Yogi Adityanath">
+    <div class="card-body">
+      <h3><a href="/posts/yogi-adityanath-the-firebrand-bjp-leader-took-over-as-the-32nd-chief-minister-of-uttar-pradesh/">Yogi Adityanath, the firebrand BJP leader took over as the 32nd Chief Minister of Uttar Pradesh.</a></h3>
+      <a href="/posts/yogi-adityanath-the-firebrand-bjp-leader-took-over-as-the-32nd-chief-minister-of-uttar-pradesh/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">20 Mar 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/03/17158971_1265040090269684_6975505342820283877_o.jpg" alt="Holika Dahan Festival">
+    <div class="card-body">
+      <h3><a href="/posts/vishwa-hindu-parishad-thailand-and-hindu-dharma-sabha-vishnu-temple-jointly-organized-8th-holika-dahan-festival-on-12th-march/">Vishwa Hindu Parishad Thailand and Hindu Dharma Sabha Vishnu Temple jointly organized...</a></h3>
+      <a href="/posts/vishwa-hindu-parishad-thailand-and-hindu-dharma-sabha-vishnu-temple-jointly-organized-8th-holika-dahan-festival-on-12th-march/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">20 Mar 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/03/17201233_1262871287153231_3520042504353442985_n.jpg" alt="Holi Colors">
+    <div class="card-body">
+      <h3><a href="/posts/let-the-colors-of-holi-spread-the-message-of-peace-and-happiness/">Let the colors of Holi spread the message of peace and happiness.</a></h3>
+      <a href="/posts/let-the-colors-of-holi-spread-the-message-of-peace-and-happiness/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">20 Mar 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/03/17201354_1262583097182050_4064312604707220949_n.jpg" alt="Sunday Special">
+    <div class="card-body">
+      <h3><a href="/posts/sunday-special-all-are-invited-with-family-to-celebrate-8th-holika-dahan-festival-in-bangkok-on-12th-march-at-vishnu/">Sunday Special: All are Invited with Family to Celebrate 8th Holika Dahan Festival...</a></h3>
+      <a href="/posts/sunday-special-all-are-invited-with-family-to-celebrate-8th-holika-dahan-festival-in-bangkok-on-12th-march-at-vishnu/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">20 Mar 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/03/17201424_1259859024121124_3983191950940624938_n.jpg" alt="Holi Hasya Kavi">
+    <div class="card-body">
+      <h3><a href="/posts/12th-march-is-the-last-date-to-send-video-presentations-for-the-holi-hasya-kavi-competition-2017/">12th March is the last date to send video presentations for the Holi Hasya Kavi Competition 2017.</a></h3>
+      <a href="/posts/12th-march-is-the-last-date-to-send-video-presentations-for-the-holi-hasya-kavi-competition-2017/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">20 Mar 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/03/17103398_1255968501176843_286899486432118040_n.jpg" alt="Celebrate Holika Dahan">
+    <div class="card-body">
+      <h3><a href="/posts/celebrate-holika-dahan-festival-in-bangkok-on-sunday-12th-march-7pm-at-shri-vishnu-temple-2/">Celebrate Holika Dahan Festival in Bangkok on Sunday, 12th March 7pm at Shri Vishnu Temple.</a></h3>
+      <a href="/posts/celebrate-holika-dahan-festival-in-bangkok-on-sunday-12th-march-7pm-at-shri-vishnu-temple-2/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">20 Mar 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/03/17098661_1255348964572130_9098486992881149649_n.jpg" alt="Local Talented Artists">
+    <div class="card-body">
+      <h3><a href="/posts/great-opportunity-for-local-talented-artists-in-thailand/">Great opportunity for local talented artists in Thailand</a></h3>
+      <a href="/posts/great-opportunity-for-local-talented-artists-in-thailand/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">20 Mar 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/03/17098588_1254412767999083_4790793260202709572_n.jpg" alt="Tourism Authority">
+    <div class="card-body">
+      <h3><a href="/posts/my-special-thanks-to-tourism-authority-of-thailand-for-arranging-wonderful-thai-dance-performance-at-the-pravasi-bharatiya-samman-award-celebration-on-17th-feb-2017/">My special thanks to Tourism Authority of Thailand for arranging wonderful Thai dance performance...</a></h3>
+      <a href="/posts/my-special-thanks-to-tourism-authority-of-thailand-for-arranging-wonderful-thai-dance-performance-at-the-pravasi-bharatiya-samman-award-celebration-on-17th-feb-2017/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">2 Mar 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/03/11.jpg" alt="Holi Competition">
+    <div class="card-body">
+      <h3><a href="/posts/e0-a4-87-e0-a4-b8-e0-a4-ac-e0-a4-be-e0-a4-b0-e0-a4-b8-e0-a4-ac-e0-a4-95-e0-a5-8b-e0-a4-b9-e0-a4-81-e0-a4-b8-e0-a4-be-e0-a4-a8-e0-a5-87-e0-a4-95-e0-a5-80/">इस बार सबको हँसाने की बारी आपकी |</a></h3>
+      <a href="/posts/e0-a4-87-e0-a4-b8-e0-a4-ac-e0-a4-be-e0-a4-b0-e0-a4-b8-e0-a4-ac-e0-a4-95-e0-a5-8b-e0-a4-b9-e0-a4-81-e0-a4-b8-e0-a4-be-e0-a4-a8-e0-a5-87-e0-a4-95-e0-a5-80/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">2 Mar 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/03/16997757_1252726431501050_5975071936240997408_n.jpg" alt="Shri Geeta Ashram">
+    <div class="card-body">
+      <h3><a href="/posts/25-feb-2017-my-sincere-thanks-to-the-executive-committee-members-of-shri-geeta-ashram-thailand/">(25 Feb 2017) - My sincere thanks to the Executive Committee members of Shri Geeta Ashram...</a></h3>
+      <a href="/posts/25-feb-2017-my-sincere-thanks-to-the-executive-committee-members-of-shri-geeta-ashram-thailand/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">2 Mar 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/03/17017042_1252579704849056_4728187295971012013_o.jpg" alt="Bangkok Gems and Jewellery">
+    <div class="card-body">
+      <h3><a href="/posts/published-in-the-bangkok-gems-and-jewellery-magazine-feb-2017-2/">Published in the Bangkok Gems and Jewellery Magazine (Feb 2017)</a></h3>
+      <a href="/posts/published-in-the-bangkok-gems-and-jewellery-magazine-feb-2017-2/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">2 Mar 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/03/17038442_1252506548189705_3286896276913083572_o.jpg" alt="Grand Celebration">
+    <div class="card-body">
+      <h3><a href="/posts/thank-you-all-for-joining-us-at-the-grand-celebration-of-pravasi-bharatiya-samman-award-it-was-a-big-success-and-your-honourable-presence2/">Thank you all for joining us at the grand celebration of Pravasi Bharatiya Samman Award...</a></h3>
+      <a href="/posts/thank-you-all-for-joining-us-at-the-grand-celebration-of-pravasi-bharatiya-samman-award-it-was-a-big-success-and-your-honourable-presence2/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">2 Mar 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/03/15823411_1202308893209471_851251249791283145_n.jpg" alt="Countdown begins">
+    <div class="card-body">
+      <h3><a href="/posts/countdown-begins-only-5-days-left-for-the-14th-pravasi-bhartiya-divas-convention/">Countdown begins: Only 5 days left for the 14th Pravasi Bhartiya Divas Convention</a></h3>
+      <a href="/posts/countdown-begins-only-5-days-left-for-the-14th-pravasi-bhartiya-divas-convention/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">1 Mar 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2017/03/15741297_1200289210078106_2790428185184826936_n-1.jpg" alt="Registered Delegates">
+    <div class="card-body">
+      <h3><a href="/posts/registered-delegates-of-pravasi-bhartiya-divas-convention-2017-now-can-schedule-b2b-and-b2g-meetings/">Registered Delegates of Pravasi Bhartiya Divas Convention 2017</a></h3>
+      <a href="/posts/registered-delegates-of-pravasi-bhartiya-divas-convention-2017-now-can-schedule-b2b-and-b2g-meetings/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">1 Mar 2017</div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <img loading="lazy" src="/images/uploads/2015/12/long-live-the-king.jpg" alt="Kiseki's News">
+    <div class="card-body">
+      <h3><a href="/posts/kisekis-news/">Kiseki's News</a></h3>
+      <a href="/posts/kisekis-news/" class="read-more-btn">Read More &rarr;</a>
+      <div class="meta">1 Dec 2015</div>
+    </div>
+  </div>
+  
+</div>
+
+</article>
+</main>
+
+  <!-- ส่วน Footer ด้านล่างสุด (พร้อม Facebook, Instagram และ Copyright) -->
+  <footer class="site-footer">
+    <div class="wrap" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; align-items: flex-start;">
+      <!-- คอลัมน์ที่ 1: ข้อมูลบริษัท -->
+      <div style="flex: 1; min-width: 200px;">
+        <h4>Saraff Global</h4>
+        <p>Striving Towards Excellence</p>
+        <p style="margin-top: 15px; display: flex; gap: 15px; align-items: center;">
+          <a href="https://www.facebook.com/saraffglobal" style="color: #fff; display: flex; align-items: center; gap: 5px; text-decoration: none;">
+            <i class="fa-brands fa-facebook" style="font-size: 1.2rem; color: #1877F2;"></i> Facebook
+          </a>
+          <a href="https://www.instagram.com/saraffdiamondjewelry/" style="color: #fff; display: flex; align-items: center; gap: 5px; text-decoration: none;">
+            <i class="fa-brands fa-instagram" style="font-size: 1.2rem; color: #E4405F;"></i> Instagram
+          </a>
+        </p>
+      </div>
+      <!-- คอลัมน์ที่ 3: เมนูนำทาง (Navigate) -->
+      <div style="flex: 1; min-width: 200px;">
+        <h4>Navigate</h4>
+        <p>
+          <a href="/">Home</a><br>
+          <a href="/about-us/about-us-2/">About Us</a><br>
+          <a href="/our-business-leaders/">Our Business Leaders</a><br>
+          <a href="/the-saraff-global-group-of-companies/">The Group</a><br>
+          <a href="/careers/">Careers</a><br>
+          <a href="/philanthropy2/">Philanthropy</a><br>
+          <a href="/categories/news/">News</a><br>
+          <a href="/contact-us-2/">Contact Us</a><br>
+        </p>
+      </div>
+
+      <!-- คอลัมน์ที่ 2: ข้อมูลติดต่อ -->
+      <div style="flex: 1; min-width: 250px;">
+        <h4>Contact</h4>
+        <p>77/32 Sinn Sathorn Tower 11th Floor, Krungthonburi Road, Klongtonsai, Klongsarn, Bangkok, Thailand 10600<br>&#43;66 2862-2061</p>
+        
+      </div>
+
+
+      <!-- คอลัมน์ที่ 4: แผนที่ Google Maps ทางขวา -->
+      <div style="flex: 1.3; min-width: 310px;">
+        <h4>Location</h4>
+        <iframe src="https://www.google.com/maps/d/embed?mid=1DifMvTGUxEgRck4yv9j6Ana-p4Q" style="width: 100%; height: 300px; border:0; border-radius: 30px;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+    <div class="copyright" style="text-align: center; margin-top: 30px;">Copyright © 2026 Saraff Global. All rights reserved.</div>
+  </footer>
+
+  <!-- สคริปต์ระบบค้นหาและแฮมเบอร์เกอร์เมนูบนมือถือ -->
+  <script>
+    /* [REMARK - MOBILE RESPONSIVE]: Script สำหรับเปิด-ปิดเมนูบนมือถือ */
+    const menuToggleBtn = document.getElementById('menuToggleBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    if(menuToggleBtn) {
+        menuToggleBtn.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+    }
+
+    const searchBtn = document.querySelector('.search-icon-btn');
+    const searchModal = document.getElementById('searchModal');
+    const closeSearchBtn = document.getElementById('closeSearchBtn');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    if(searchBtn) {
+        searchBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            searchModal.style.display = 'flex';
+            searchInput.value = '';
+            searchResults.innerHTML = '<p style="color: #777; text-align: center; font-size: 0.9rem;">พิมพ์คำค้นหาด้านบนเพื่อค้นหาเนื้อหา...</p>';
+            searchInput.focus();
+        });
+
+        closeSearchBtn.addEventListener('click', function() {
+            searchModal.style.display = 'none';
+        });
+
+        searchModal.addEventListener('click', function(e) {
+            if (e.target === searchModal) {
+                searchModal.style.display = 'none';
+            }
+        });
+    }
+  </script>
+</body>
+</html>
