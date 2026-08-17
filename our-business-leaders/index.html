@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Business Leaders · Saraff Global</title>
+  <meta name="description" content="Striving Towards Excellence">
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- เพิ่ม FontAwesome สำหรับไอคอนแว่นขยายค้นหาและโซเชียล -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* ล็อคแทบบาร์ด้านบนให้อยู่กับที่ตลอดเวลา และดันเนื้อหาลงไม่ให้โดนบัง */
+    .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: #122238; /* สีพื้นหลังแถบเมนู */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    body {
+        padding-top: 110px; /* เว้นระยะด้านบนไม่ให้เนื้อหาถูกแถบเมนูบัง */
+    }
+
+    /* จัดโลโก้และเมนูให้อยู่ในแถวเดียวกัน และเพิ่มช่องค้นหาทางขวา */
+    .site-header .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1350px;
+        margin: 0 auto;
+        padding: 35px 45px;
+    }
+
+    .site-header nav ul {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .site-header nav a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .site-header nav a:hover {
+        color: #ddd;
+    }
+
+    /* สไตล์ไอคอนค้นหา */
+    .search-icon-btn {
+        color: #fff;
+        font-size: 1.1rem;
+        text-decoration: none;
+        padding: 5px 10px;
+        transition: color 0.2s;
+    }
+
+    .search-icon-btn:hover {
+        color: #c00;
+    }
+
+    .section-title {
+        background-color: #f5f5f5;
+        border-top: 1px solid #e0e0e0;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 20px 0;
+        margin: 40px 0;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .leaders-grid {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 40px;
+        margin: 40px auto;
+        flex-wrap: wrap;
+    }
+
+    .leader-card {
+        text-decoration: none;
+        color: #333;
+        text-align: center;
+        width: 250px;
+        cursor: pointer;
+    }
+
+    .leader-card img {
+        display: block;
+        margin: 0 auto 15px auto;
+        border-radius: 8px;
+        transition: transform 0.3s;
+        width: 100%;
+        height: auto;
+    }
+
+    .leader-card:hover img {
+        transform: scale(1.05);
+    }
+
+    /* Modal CSS */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.6);
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal:target {
+        display: flex;
+    }
+
+    /* wrapper ใหม่: ไม่มี overflow ตัด จึงทำให้ปุ่มปิดลอยเหนือกรอบขาวได้จริง */
+    .modal-container {
+        position: relative;
+        width: 90%;
+        max-width: 650px;
+        max-height: 85vh;
+    }
+
+    .modal-content {
+        background: #fff;
+        padding: 40px 30px 30px 30px;
+        width: 100%;
+        border-radius: 8px;
+        position: relative; /* ใช้เป็นจุดอ้างอิงให้ nav-btn */
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        max-height: 85vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        text-align: left;
+        box-sizing: border-box;
+    }
+
+    .close-btn {
+        position: absolute; 
+        top: -15px;         /* ลอยอยู่เหนือกรอบขาวด้านบน (อ้างอิงจาก .modal-container ไม่ใช่ .modal-content แล้ว จึงไม่โดน overflow ตัด) */
+        right: -15px;       /* ดันออกไปนอกกล่องขาวด้านขวา */
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;        
+        text-decoration: none;
+        background: #fff;   /* พื้นหลังสีขาวพร้อมเงาเพื่อให้ลอยเด่นชัดเจน */
+        width: 35px;
+        height: 35px;
+        line-height: 33px;
+        text-align: center;
+        border-radius: 50%;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+        z-index: 1100;
+        transition: background 0.2s, color 0.2s;
+    }
+
+    .close-btn:hover {
+        background: #f0f0f0;
+        color: #000;
+    }
+
+    .nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 24px;
+        background: #f1f1f1;
+        color: #333;
+        padding: 10px 15px;
+        text-decoration: none;
+        border-radius: 4px;
+        z-index: 5;
+    }
+
+    .nav-btn.prev {
+        left: 10px;
+    }
+
+    .nav-btn.next {
+        right: 10px;
+    }
+
+    .nav-btn:hover {
+        background: #ddd;
+    }
+
+    .modal-img {
+        display: block;
+        width: 150px;
+        height: auto;
+        border-radius: 8px;
+        margin: 0 auto 20px auto;
+        object-fit: cover;
+    }
+
+    .modal-body h1 {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    .modal-body h2 {
+        font-size: 1.1rem;
+        color: #666;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .modal-body ul {
+        margin-left: 20px;
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+
+    .modal-body p {
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    /* ========================================================== */
+    /* [REMARK - MOBILE RESPONSIVE]: เพิ่มเติม CSS สำหรับมือถือ    */
+    /* ========================================================== */
+    .menu-toggle-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    @media (max-width: 992px) {
+        body {
+            padding-top: 80px;
+        }
+        /* บังคับให้ wrap เรียงปกติและเว้นระยะซ้ายขวา */
+        .site-header .wrap {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+        .site-header nav ul {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #122238;
+            padding: 20px 0;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+            text-align: center;
+            gap: 20px;
+        }
+        .site-header nav ul.active {
+            display: flex;
+        }
+        /* ตั้งค่าให้ปุ่ม 3 ขีดอยู่ทางขวา */
+        .menu-toggle-btn {
+            display: block;
+            order: 2; /* ดันปุ่ม 3 ขีดไปไว้ขวาสุด */
+        }
+
+        /* ดันโลโก้หรือแบรนด์ให้อยู่ซ้าย */
+        .brand {
+            order: 1;
+        }
+        .leaders-grid {
+            gap: 20px;
+        }
+        .leader-card {
+            width: 100%;
+            max-width: 280px;
+        }
+        .modal-container {
+            width: 95%;
+            max-height: 80vh;
+        }
+        .modal-content {
+            padding: 20px 15px;
+            max-height: 80vh;
+        }
+        .close-btn {
+            top: -12px;
+            right: -10px;
+            width: 32px;
+            height: 32px;
+            line-height: 30px;
+            font-size: 18px;
+        }
+        .site-footer iframe {
+            width: 100% !important;
+            height: 300px !important;
+        }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" style="display: flex; align-items: center; gap: 20px; text-decoration: none;">
+        <!-- ปรับขนาดความสูงของโลโก้ให้ใหญ่ขึ้น -->
+        <img src="/images/uploads/2015/10/saraffglobal 1300.png" alt="Saraff Global logo" style="width: 150px; height: auto;">
+        <span class="brand-name" style="color: #333; font-size: 2rem; font-weight: bold;"></span>
+      </a>
+
+      <!-- [REMARK - MOBILE RESPONSIVE]: ปุ่มแฮมเบอร์เกอร์สำหรับเปิด-ปิดเมนูด้านบนบนมือถือ -->
+      <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="Toggle Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav aria-label="Main">
+        <ul id="navMenu">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about-us/about-us-2/">About Us</a></li>
+          <li><a href="/our-business-leaders/">Our Business Leaders</a></li>
+          <li><a href="/the-saraff-global-group-of-companies/">The Group</a></li>
+          <li><a href="/careers/">Careers</a></li>
+          <li><a href="/philanthropy2/">Philanthropy</a></li>
+          <li><a href="/categories/news/">News</a></li>
+          <li><a href="/contact-us-2/">Contact Us</a></li>
+          
+          <!-- ปุ่มสัญลักษณ์ค้นหาข้อมูล -->
+          <li>
+            <a href="#" class="search-icon-btn" title="Search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+            <!-- Search Modal Box -->
+            <div id="searchModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center;">
+              <div style="background: #fff; padding: 30px; border-radius: 8px; width: 90%; max-width: 600px; position: relative; max-height: 80vh; display: flex; flex-direction: column;">
+                <h3 style="margin-top: 0; color: #333; text-align: center;">Search Website</h3>
+                <input type="text" id="searchInput" placeholder="พิมพ์คำที่ต้องการค้นหา เช่น News, Yoga, Chairman..." style="width: 100%; padding: 12px; font-size: 1rem; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px;">
+                
+                <div id="searchResults" style="overflow-y: auto; max-height: 350px; text-align: left; margin-bottom: 15px; border-top: 1px solid #eee; padding-top: 10px;">
+                    <p style="color: #777; text-align: center; font-size: 0.9rem;">พิมพ์คำค้นหาด้านบนเพื่อค้นหาเนื้อหา...</p>
+                </div>
+
+                <button id="closeSearchBtn" style="padding: 8px 20px; background-color: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer; align-self: center;">ปิด</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" style="padding: 40px 20px;">
+    <article>
+      <div class="page-hero">
+        <h1 class="section-title">Our Business Leaders</h1>
+      </div>
+
+      <div class="content-body">
+        <div class="leaders-grid">
+          <!-- Leader Cards -->
+          <a href="#modal-susheel" class="leader-card">
+              <img src="/images/uploads/2015/07/Susheel-Saraff.jpg" alt="Susheel">
+              <h5>Susheel Kumar Saraff</h5>
+              <p>Chairman/Founder</p>
+          </a>
+          <a href="#modal-jay" class="leader-card">
+              <img src="/images/uploads/2015/07/Jay-Prakash-Saraff.jpg" alt="Jay">
+              <h5>Jay Prakash Saraff</h5>
+              <p>Group Managing Director</p>
+          </a>
+          <a href="#modal-vijay" class="leader-card">
+              <img src="/images/uploads/2015/07/Vijay-Kumar-Saraff.jpg" alt="Vijay">
+              <h5>Vijay Saraff</h5>
+              <p>President Saraff Infotech</p>
+          </a>
+
+          <!-- Modal 1: Susheel -->
+          <div id="modal-susheel" class="modal">
+            <div class="modal-container">
+              <!-- ปุ่มปิดอยู่นอก modal-content (ไม่โดน overflow ตัด) จึงลอยเหนือกรอบขาวด้านขวาบนได้จริง -->
+              <a href="#" class="close-btn">&times;</a>
+              <div class="modal-content">
+                  <a href="#modal-vijay" class="nav-btn prev">&#10094;</a>
+                  <div class="modal-body">
+                      <img src="/images/uploads/2015/07/Susheel-Saraff.jpg" alt="Susheel" class="modal-img">
+                      <h1>Susheel Kumar Saraff</h1>
+                      <h2>Chairman/Founder</h2>
+                      <ul>
+                        <li>Susheel is the founder and visionary Chairman of Saraff Group of Companies.</li>
+                        <li>40 years of experience as a successful entrepreneur.</li>
+                        <li>Under his dynamic, exemplary leadership, Saraff Group is now a diversified conglomerate with business presence in US, Thailand, India, and Hong Kong.</li>
+                        <li>Popularly known as "BOSS" by all the Saraff employees, Mr. Saraff is a very friendly and interactive person who encourages and supports employees in their work.</li>
+                      </ul>
+                      <p><strong>Social Activities:</strong></p>
+                      <ul>
+                        <li>Mr. Saraff was awarded with "Pravasi Bharatiya Samman 2017", the highest civilian honour conferred on overseas Indians conferred on Susheel Kumar Saraff. Recognized for his work in business, society and advancing human consciousness, now investing in start-ups. Hon'ble Pranab Mukherjee, President of India presented the award on 9th Jan.</li>
+                        <li>As the President of the India-Thai Chamber of Commerce (April 2011-April 2015), he has provided strategic leadership to the Board of Directors and established the Chamber to new heights by creating business opportunities for its members.</li>
+                        <li>Mr. Saraff is also serving as International Working President for International Vaish Federation and President of VHP Association Thailand. He is one of the Trustees of Vishwa Hindu Parishad.</li>
+                        <li>He also runs the Shri Dadiji Mandir Trust, Titlagarh, Odisha that organize annual free eye cataract surgery camp for the people living in remote areas.</li>
+                        <li>Under the patronage of the Embassy of India, Mr. Saraff is a founder member and Convener of Indian Social Club of Thailand that represents about 65 Associations of Indian Community in Thailand.</li>
+                      </ul>
+                  </div>
+                  <a href="#modal-jay" class="nav-btn next">&#10095;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal 2: Jay -->
+          <div id="modal-jay" class="modal">
+            <div class="modal-container">
+              <a href="#" class="close-btn">&times;</a>
+              <div class="modal-content">
+                  <a href="#modal-susheel" class="nav-btn prev">&#10094;</a>
+                  <div class="modal-body">
+                      <img src="/images/uploads/2015/07/Jay-Prakash-Saraff.jpg" alt="Jay" class="modal-img">
+                      <h1>Jay Prakash Saraff</h1>
+                      <h2>Managing Director</h2>
+                      <ul>
+                        <li>Jay is a Business Graduate and has done MBA in Finance from Chulalongkorn University.</li>
+                        <li>Following on his father's footsteps Mr. Jay is managing the company and developing new business opportunities.</li>
+                        <li>With an experience of 15 years in various industries like plastics, power sector, real estate Mr. Jay Prakash is taking the company to the next level in today's corporate world.</li>
+                        <li>Popularly known as “Mr. JP”, He is a great leader.</li>
+                        <li>Jay is involved in various social activities and spends his free time with his family.</li>
+                      </ul>
+                  </div>
+                  <a href="#modal-vijay" class="nav-btn next">&#10095;</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal 3: Vijay -->
+          <div id="modal-vijay" class="modal">
+            <div class="modal-container">
+              <a href="#" class="close-btn">&times;</a>
+              <div class="modal-content">
+                  <a href="#modal-jay" class="nav-btn prev">&#10094;</a>
+                  <div class="modal-body">
+                      <img src="/images/uploads/2015/07/Vijay-Kumar-Saraff.jpg" alt="Vijay" class="modal-img">
+                      <h1>Vijay Prakash Saraff</h1>
+                      <h2>President of Saraff InfoTech and Saraff Holdings</h2>
+                      <ul>
+                        <li>Computer Systems Engineering, Rensselaer Polytechnic Institute (US)</li>
+                        <li>Dual MBA in Strategy and Finance from Kellogg School of Management and Sasin School of Management</li>
+                        <li>Leads ventures across IT services, BPO, and startup acceleration</li>
+                        <li>Specializes in making complex technology simple and accessible</li>
+                        <li>Passionate about conscious leadership, team empowerment, and value-driven innovation</li>
+                      </ul>
+                  </div>
+                  <a href="#modal-susheel" class="nav-btn next">&#10095;</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- ส่วน Footer ด้านล่างสุด (พร้อม Facebook, Instagram และ Copyright) -->
+  <footer class="site-footer">
+    <div class="wrap" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; align-items: flex-start;">
+      <!-- คอลัมน์ที่ 1: ข้อมูลบริษัท -->
+      <div style="flex: 1; min-width: 200px;">
+        <h4>Saraff Global</h4>
+        <p>Striving Towards Excellence</p>
+        <p style="margin-top: 15px; display: flex; gap: 15px; align-items: center;">
+          <a href="https://www.facebook.com/saraffglobal" style="color: #fff; display: flex; align-items: center; gap: 5px; text-decoration: none;">
+            <i class="fa-brands fa-facebook" style="font-size: 1.2rem; color: #1877F2;"></i> Facebook
+          </a>
+          <a href="https://www.instagram.com/saraffdiamondjewelry/" style="color: #fff; display: flex; align-items: center; gap: 5px; text-decoration: none;">
+            <i class="fa-brands fa-instagram" style="font-size: 1.2rem; color: #E4405F;"></i> Instagram
+          </a>
+        </p>
+      </div>
+      <!-- คอลัมน์ที่ 3: เมนูนำทาง (Navigate) -->
+      <div style="flex: 1; min-width: 200px;">
+        <h4>Navigate</h4>
+        <p>
+          <a href="/">Home</a><br>
+          <a href="/about-us/about-us-2/">About Us</a><br>
+          <a href="/our-business-leaders/">Our Business Leaders</a><br>
+          <a href="/the-saraff-global-group-of-companies/">The Group</a><br>
+          <a href="/careers/">Careers</a><br>
+          <a href="/philanthropy2/">Philanthropy</a><br>
+          <a href="/categories/news/">News</a><br>
+          <a href="/contact-us-2/">Contact Us</a><br>
+        </p>
+      </div>
+
+      <!-- คอลัมน์ที่ 2: ข้อมูลติดต่อ -->
+      <div style="flex: 1; min-width: 250px;">
+        <h4>Contact</h4>
+        <p>77/32 Sinn Sathorn Tower 11th Floor, Krungthonburi Road, Klongtonsai, Klongsarn, Bangkok, Thailand 10600<br>&#43;66 2862-2061</p>
+      </div>
+
+      <!-- คอลัมน์ที่ 4: แผนที่ Google Maps ทางขวา -->
+      <div style="flex: 1.3; min-width: 310px;">
+        <h4>Location</h4>
+        <iframe src="https://www.google.com/maps/d/embed?mid=1DifMvTGUxEgRck4yv9j6Ana-p4Q" style="width: 100%; height: 300px; border:0; border-radius: 30px;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+    <div class="copyright" style="text-align: center; margin-top: 30px;">Copyright © 2026 Saraff Global. All rights reserved.</div>
+  </footer>
+
+  <!-- สคริปต์ระบบค้นหาและแฮมเบอร์เกอร์เมนูบนมือถือ -->
+  <script>
+    /* [REMARK - MOBILE RESPONSIVE]: Script สำหรับเปิด-ปิดเมนูบนมือถือ */
+    const menuToggleBtn = document.getElementById('menuToggleBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    if(menuToggleBtn) {
+        menuToggleBtn.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+    }
+
+    const searchBtn = document.querySelector('.search-icon-btn');
+    const searchModal = document.getElementById('searchModal');
+    const closeSearchBtn = document.getElementById('closeSearchBtn');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    if(searchBtn) {
+        searchBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            searchModal.style.display = 'flex';
+            searchInput.value = '';
+            searchResults.innerHTML = '<p style="color: #777; text-align: center; font-size: 0.9rem;">พิมพ์คำค้นหาด้านบนเพื่อค้นหาเนื้อหา...</p>';
+            searchInput.focus();
+        });
+
+        closeSearchBtn.addEventListener('click', function() {
+            searchModal.style.display = 'none';
+        });
+
+        searchModal.addEventListener('click', function(e) {
+            if (e.target === searchModal) {
+                searchModal.style.display = 'none';
+            }
+        });
+    }
+  </script>
+</body>
+</html>

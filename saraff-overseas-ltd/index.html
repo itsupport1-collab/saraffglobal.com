@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SARAFF OVERSEAS LTD · Saraff Global</title>
+  <meta name="description" content="Striving Towards Excellence">
+  <link rel="stylesheet" href="/css/style.css">
+  <!-- เพิ่ม FontAwesome สำหรับไอคอนแว่นขยายค้นหาและโซเชียล -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* ล็อคแทบบาร์ด้านบนให้อยู่กับที่ตลอดเวลา และดันเนื้อหาลงไม่ให้โดนบัง */
+    .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: #122238; /* สีพื้นหลังแถบเมนู */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    body {
+        padding-top: 110px; /* เว้นระยะด้านบนไม่ให้เนื้อหาถูกแถบเมนูบัง */
+    }
+
+    /* จัดโลโก้และเมนูให้อยู่ในแถวเดียวกัน และเพิ่มช่องค้นหาทางขวา */
+    .site-header .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1350px;
+        margin: 0 auto;
+        padding: 35px 45px;
+    }
+
+    .site-header nav ul {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .site-header nav a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .site-header nav a:hover {
+        color: #ddd;
+    }
+
+    /* สไตล์ไอคอนค้นหา */
+    .search-icon-btn {
+        color: #fff;
+        font-size: 1.1rem;
+        text-decoration: none;
+        padding: 5px 10px;
+        transition: color 0.2s;
+    }
+
+    .search-icon-btn:hover {
+        color: #c00;
+    }
+
+    .section-title {
+        background-color: #f5f5f5;
+        border-top: 1px solid #e0e0e0;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 20px 0;
+        margin: 40px 0;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    /* ========================================================== */
+    /* [REMARK - MOBILE RESPONSIVE]: เพิ่มเติม CSS สำหรับมือถือ    */
+    /* ========================================================== */
+    .menu-toggle-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    @media (max-width: 992px) {
+        body {
+            padding-top: 80px;
+        }
+        .site-header .wrap {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            padding: 20px;
+        }
+        .site-header nav ul {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #122238;
+            padding: 20px 0;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+            text-align: center;
+            gap: 20px;
+        }
+        .site-header nav ul.active {
+            display: flex;
+        }
+        .menu-toggle-btn {
+            display: block;
+            order: 2;
+        }
+        .brand {
+            order: 1;
+        }
+        .site-footer iframe {
+            width: 100% !important;
+            height: 300px !important;
+        }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" style="display: flex; align-items: center; gap: 20px; text-decoration: none;">
+        <img src="/images/uploads/2015/10/saraffglobal 1300.png" alt="Saraff Global logo" style="width: 150px; height: auto;">
+        <span class="brand-name" style="color: #fff; font-size: 1.2rem; font-weight: bold;"></span>
+      </a>
+
+      <!-- ปุ่มแฮมเบอร์เกอร์สำหรับมือถือ -->
+      <button class="menu-toggle-btn" id="menuToggleBtn" aria-label="Toggle Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav aria-label="Main">
+        <ul id="navMenu">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about-us/about-us-2/">About Us</a></li>
+          <li><a href="/our-business-leaders/">Our Business Leaders</a></li>
+          <li><a href="/the-saraff-global-group-of-companies/">The Group</a></li>
+          <li><a href="/careers/">Careers</a></li>
+          <li><a href="/philanthropy2/">Philanthropy</a></li>
+          <li><a href="/categories/news/">News</a></li>
+          <li><a href="/contact-us-2/">Contact Us</a></li>
+          
+          <!-- ปุ่มสัญลักษณ์ค้นหาข้อมูล -->
+          <li>
+            <a href="#" class="search-icon-btn" title="Search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+            <!-- Search Modal Box -->
+            <div id="searchModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center;">
+              <div style="background: #fff; padding: 30px; border-radius: 8px; width: 90%; max-width: 600px; position: relative; max-height: 80vh; display: flex; flex-direction: column;">
+                <h3 style="margin-top: 0; color: #333; text-align: center;">Search Website</h3>
+                <input type="text" id="searchInput" placeholder="พิมพ์คำที่ต้องการค้นหา เช่น News, Yoga, Chairman..." style="width: 100%; padding: 12px; font-size: 1rem; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; margin-bottom: 15px;">
+                
+                <div id="searchResults" style="overflow-y: auto; max-height: 350px; text-align: left; margin-bottom: 15px; border-top: 1px solid #eee; padding-top: 10px;">
+                    <p style="color: #777; text-align: center; font-size: 0.9rem;">พิมพ์คำค้นหาด้านบนเพื่อค้นหาเนื้อหา...</p>
+                </div>
+
+                <button id="closeSearchBtn" style="padding: 8px 20px; background-color: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer; align-self: center;">ปิด</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" style="padding: 40px 20px; max-width: 1100px; margin: 0 auto;">
+    <article>
+      <div class="page-hero">
+        <h1 class="section-title">SARAFF OVERSEAS LTD</h1>
+        <div class="meta" style="text-align: center; margin-top: 10px; color: #777;">
+          28 May 2025
+        </div>
+      </div>
+
+      <div class="content-body" style="margin-top: 40px; line-height: 1.6; color: #444;">
+        <!-- รูปภาพส่วนหัว (เพิ่ม display: block และ margin: 0 auto เพื่อบังคับให้อยู่ตรงกลาง) -->
+        <div style="text-align: center; margin-bottom: 40px;">
+            <img alt="SARAFF OVERSEAS LTD" src="/images/uploads/2019/10/image.png" srcset="/images/uploads/2019/10/image.png 550w, /images/uploads/2019/10/image-300x218.png 300w" sizes="(max-width: 550px) 100vw, 550px" style="display: block; margin: 0 auto; max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        </div>
+        
+        <p style="font-size: 1.05rem; text-align: justify; margin-bottom: 20px;">
+            <strong>Saraff Overseas Limited</strong> was established to further expand the Saraff Group’s global footprint in the diamond industry. Being strategically located in Hong Kong, Saraff Overseas facilitates the group’s trading, import, and export activities in the region.
+        </p>
+
+        <p style="font-size: 1.05rem; text-align: justify; margin-bottom: 50px;">
+            Saraff Overseas upholds the Group’s stringent quality and ethical standards – delivering exceptional value to our customers and partners.
+        </p>
+
+        <h3 style="color: #122238; border-bottom: 2px solid #eee; padding-bottom: 10px; text-align: center; margin-bottom: 20px;">COMPANY DETAILS</h3>
+        <h5 style="text-align: center; font-size: 1.1rem; margin-bottom: 30px;">
+            SARAFF OVERSEAS LTD.<br><br>
+            <span style="font-weight: normal; font-size: 1rem;"><strong>Website :</strong> <a href="https://saraffoverseas.com" target="_blank" style="color: #c00; text-decoration: none;">saraffoverseas.com</a></span>
+        </h5>
+
+        <!-- จัดเลย์เอาต์แบ่งเป็น 3 ฝั่ง (Bangkok, Mumbai และ Hongkong) -->
+        <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center;">
+            
+            <!-- สาขา Bangkok -->
+            <div style="flex: 1; min-width: 280px; background: #f5f7fa; padding: 25px; border-radius: 8px; border-top: 5px solid #122238; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                <h5 style="color: #122238; font-size: 1.1rem; margin-top: 0; text-transform: uppercase;">Bangkok</h5>
+                <p style="margin-bottom: 15px;">
+                    919/448 Jewelry Trade Center, 37th Floor Unit H-2,<br>
+                    Silom Rd., Bangrak, Bangkok 10500 Thailand
+                </p>
+                <p style="margin-bottom: 0; line-height: 1.8;">
+                    <strong>Tel :</strong> +66 2236 9491<br>
+                    <strong>Fax :</strong> +66 2236 1918
+                </p>
+            </div>
+
+            <!-- สาขา Mumbai -->
+            <div style="flex: 1; min-width: 280px; background: #f5f7fa; padding: 25px; border-radius: 8px; border-top: 5px solid #122238; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                <h5 style="color: #122238; font-size: 1.1rem; margin-top: 0; text-transform: uppercase;">Mumbai</h5>
+                <p style="margin-bottom: 15px;">
+                    Office No. DE5080A, Tower D, East Core,<br>
+                    Bharat Diamond Bourse, Bandra Kurla Complex,<br>
+                    Bandra (East), Mumbai - 400051, India
+                </p>
+                <p style="margin-bottom: 0; line-height: 1.8;">
+                    <strong>Tel :</strong> +91 84 5404 5810<br>
+                    <strong>Fax :</strong> +91 22 4023 0905
+                </p>
+            </div>
+
+            <!-- สาขา Hongkong -->
+            <div style="flex: 1; min-width: 280px; background: #f5f7fa; padding: 25px; border-radius: 8px; border-top: 5px solid #122238; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                <h5 style="color: #122238; font-size: 1.1rem; margin-top: 0; text-transform: uppercase;">Hongkong</h5>
+                <p style="margin-bottom: 15px;">
+                    Unit C, 6/F, 8 Hart Avenue,<br>
+                    Tsim Sha Tsui, Kowloon, Hong Kong
+                </p>
+                <p style="margin-bottom: 0; line-height: 1.8;">
+                    <strong>Tel :</strong> +852 2722 1117<br>
+                    <strong>Fax :</strong> +852 3914 7812
+                </p>
+            </div>
+        </div>
+
+        <!-- แผนที่ Google Maps -->
+        <div style="margin-top: 50px; text-align: center;">
+            <iframe src="https://www.google.com/maps/d/embed?mid=1JIpDL9hvCHHb3hvNnlYfJZYPkmeggi0&ehbc=2E312F&noprof=1" style="width: 100%; height: 480px; border: 0; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+      </div>
+    </article>
+  </main>
+
+  <!-- ส่วน Footer ด้านล่างสุด (พร้อม Social Media, Navigate, Contact, Location) -->
+  <footer class="site-footer">
+    <div class="wrap" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; align-items: flex-start; max-width: 1350px; margin: 0 auto; padding: 40px 30px;">
+      <!-- คอลัมน์ที่ 1: ข้อมูลบริษัท -->
+      <div style="flex: 1; min-width: 200px;">
+        <h4 style="color: #fff; margin-bottom: 10px;">Saraff Global</h4>
+        <p style="color: #ccc; margin: 0;">Striving Towards Excellence</p>
+        <p style="margin-top: 15px; display: flex; gap: 15px; align-items: center;">
+          <a href="https://www.facebook.com/saraffglobal" style="color: #fff; display: flex; align-items: center; gap: 5px; text-decoration: none;">
+            <i class="fa-brands fa-facebook" style="font-size: 1.2rem; color: #1877F2;"></i> Facebook
+          </a>
+          <a href="https://www.instagram.com/saraffdiamondjewelry/" style="color: #fff; display: flex; align-items: center; gap: 5px; text-decoration: none;">
+            <i class="fa-brands fa-instagram" style="font-size: 1.2rem; color: #E4405F;"></i> Instagram
+          </a>
+        </p>
+      </div>
+
+      <!-- คอลัมน์ที่ 2: เมนูนำทาง (Navigate) -->
+      <div style="flex: 1; min-width: 200px;">
+        <h4>Navigate</h4>
+        <p>
+          <a href="/">Home</a><br>
+          <a href="/about-us/about-us-2/">About Us</a><br>
+          <a href="/our-business-leaders/">Our Business Leaders</a><br>
+          <a href="/the-saraff-global-group-of-companies/">The Group</a><br>
+          <a href="/careers/">Careers</a><br>
+          <a href="/philanthropy2/">Philanthropy</a><br>
+          <a href="/categories/news/">News</a><br>
+          <a href="/contact-us-2/">Contact Us</a><br>
+        </p>
+      </div>
+
+      <!-- คอลัมน์ที่ 3: ข้อมูลติดต่อสำนักงานใหญ่ -->
+      <div style="flex: 1; min-width: 250px;">
+        <h4>Contact</h4>
+        <p>77/32 Sinn Sathorn Tower 11th Floor, Krungthonburi Road, Klongtonsai, Klongsarn, Bangkok, Thailand 10600<br>&#43;66 2862-2061</p>
+      </div>
+
+      <!-- คอลัมน์ที่ 4: แผนที่ Google Maps สำนักงานใหญ่ -->
+      <div style="flex: 1.3; min-width: 310px;">
+        <h4>Location</h4>
+        <iframe src="https://www.google.com/maps/d/embed?mid=1DifMvTGUxEgRck4yv9j6Ana-p4Q" style="width: 100%; height: 300px; border:0; border-radius: 30px;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+    <div class="copyright" style="text-align: center; margin-top: 30px; padding-bottom: 20px;">Copyright © 2026 Saraff Global. All rights reserved.</div>
+  </footer>
+
+  <!-- สคริปต์ระบบค้นหาและแฮมเบอร์เกอร์เมนูบนมือถือ -->
+  <script>
+    const menuToggleBtn = document.getElementById('menuToggleBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    if(menuToggleBtn) {
+        menuToggleBtn.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+    }
+
+    const searchBtn = document.querySelector('.search-icon-btn');
+    const searchModal = document.getElementById('searchModal');
+    const closeSearchBtn = document.getElementById('closeSearchBtn');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+
+    if(searchBtn) {
+        searchBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            searchModal.style.display = 'flex';
+            searchInput.value = '';
+            searchResults.innerHTML = '<p style="color: #777; text-align: center; font-size: 0.9rem;">พิมพ์คำค้นหาด้านบนเพื่อค้นหาเนื้อหา...</p>';
+            searchInput.focus();
+        });
+
+        closeSearchBtn.addEventListener('click', function() {
+            searchModal.style.display = 'none';
+        });
+
+        searchModal.addEventListener('click', function(e) {
+            if (e.target === searchModal) {
+                searchModal.style.display = 'none';
+            }
+        });
+    }
+  </script>
+</body>
+</html>
